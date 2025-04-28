@@ -1,4 +1,5 @@
 -- Ensure the game is loaded
+
 if game:IsLoaded() then
     print("Game is already loaded, executing script.")
 else
@@ -65,3 +66,17 @@ if url then
 else
     sendNotification("Error", "No URL found for the current game.") -- h
 end
+
+
+queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+
+
+local TeleportCheck = false
+game:GetService("Players").LocalPlayer.OnTeleport:Connect(function()
+
+if not TeleportCheck then
+TeleportCheck = true
+queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/AinoGood/Tekkit/refs/heads/main/main'))()")
+end
+end)
+
